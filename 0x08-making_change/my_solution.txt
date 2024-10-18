@@ -1,0 +1,21 @@
+- Idea: Start with the largest coin denominations first, subtract their values from the total until
+    * remaining amount is zero or
+    * no more possible combinations exist
+
+(This is a greedy approach)
+
+
+For example:
+Total is 1002:
+Denominations : 1000 and 1
+Coins will be 1 * 1000 and 2 * 1
+Why? 1002 - 1000 (largest denomination) = 2 rem
+     2 - 1 (largest possible denomination) = 1 rem
+     1 - 1 (largest possible denomination) = 1 rem
+
+Approach:
+1. Sort the coins in descending order
+2. Start subtracting from the largest possible denomination.
+3. Subtract next largest possible denomination from the remainder.
+4. Continue until the total is 0 or if no other possible combination exists.
+
