@@ -62,18 +62,15 @@ def isWinner(x, nums):
     max_n = max(nums)
     primes = sieve_of_eratosthenes(max_n)
 
+    prime_count = [0] * (max_n + 1)
+    for i in range(1, max_n + 1):
+        prime_count[i] = prime_count[i - 1] + (1 if primes[i] else 0)
+
     for n in nums:
-        primes_to_n = [i for i in range(2, n + 1) if primes[i]]
+        if n < 2:
+            continue
 
-        turn = 0
-
-        while primes_to_n:
-            prime = primes_to_n.pop(0)
-
-            primes_to_n = [p for p in primes_to_n if p % prime != 0]
-            turn += 1
-
-        if turn % 2 != 0:
+        if prime_count[n] % 2 == 1:
             maria_wins += 1
         else:
             ben_wins += 1
